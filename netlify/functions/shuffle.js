@@ -84,7 +84,7 @@ exports.handler = async (event, context) => {
         if(error.reponse)
             msg = error.response.body;
         else
-            msg = "An error has ocurred when sending the emails";
+            msg = "An error has ocurred while sending the emails";
     }
     return {
         statusCode: 200,
