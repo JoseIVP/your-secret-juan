@@ -54,7 +54,7 @@ exports.handler = async (event, context) => {
     // Shuffle the array of people
     const shuffle = [...people]
     for(let i=0; i<shuffle.length; i++){
-        const j = Math.floor(Math.random() * shuffle.length);
+        const j = i + Math.floor(Math.random() * (shuffle.length - i));
         [shuffle[i], shuffle[j]] = [shuffle[j], shuffle[i]];
     }
     const emails = [];
