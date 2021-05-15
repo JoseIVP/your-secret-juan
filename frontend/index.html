@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your secret Juan</title>
+    <link rel="stylesheet" href="./index.css">
+    <script type="module" src="./index.js"></script>
 </head>
 <body>
-    Sitio en construcción :)
+    <main>
+        <h1>Your secret Juan</h1>
+        <form id="participants-form" novalidate>
+            <fieldset name="participants-list"></fieldset>
+            <fieldset>
+                <input type="text" placeholder="Name" name="participant-name">
+                <input type="email" placeholder="Email" name="participant-email">
+                <button type="button" name="add-participant-btn">Add participant</button>
+            </fieldset>
+            <button type="submit">Send emails</button>
+        </form>
+
+        <template id='participant-template'>
+            <fieldset class="participant">
+                <input class="participant-name" type="text" placeholder="Name">
+                <input class="participant-email" type="email" placeholder="Email">
+                <button class="remove-participant-btn" type="button" title="Remove participant">&times</button>
+            </fieldset>
+        </template>
+    </main>
 </body>
 </html>
