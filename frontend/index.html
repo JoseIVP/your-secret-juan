@@ -18,13 +18,14 @@
                 <input type="email" placeholder="Email" name="participant-email">
                 <button type="button" name="add-participant-btn">Add participant</button>
             </fieldset>
-            <button type="submit">Send emails</button>
+            <button type="submit" disabled>Send emails</button>
         </form>
 
         <template id='participant-template'>
             <fieldset class="participant">
-                <input class="participant-name" type="text" placeholder="Name">
-                <input class="participant-email" type="email" placeholder="Email">
+                <input class="participant-name" type="text" placeholder="Name"
+                required pattern=".*\S+.*" data-custom-validity="Participant name cannot be empty or blank.">
+                <input class="participant-email" type="email" placeholder="Email" title="Participant email" required>
                 <button class="remove-participant-btn" type="button" title="Remove participant">&times</button>
             </fieldset>
         </template>
