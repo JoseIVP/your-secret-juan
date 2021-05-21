@@ -47,4 +47,40 @@ form.onsubmit = (event) => {
             return;
         }
     }
+
+    // Get the data from the inputs
+    const participants = [];
+    for(const fieldset of participantsList.children){
+        const nameInput = fieldset.querySelector(".participant-name");
+        const emailInput = fieldset.querySelector(".participant-email");
+        const participant = {
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim()
+        }
+        participants.push(participant);
+    }
+    // TODO: Open a dialog for confirmation
+    // Send the data
+    const options = {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(participants),
+    };
+    fetch("/.netlify/functions/shuffle", options)
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }
+        return Promise.reject(response.text());
+    })
+    .then(result => {
+        if(result.emailsOk){
+            // TODO: Show a success message
+            console.log(result.msg);
+            return;
+        }
+        return Promise.reject(result.msg)
+    })
+    .catch(errorMsg => console.log(errorMsg));
+    // TODO: remove the participants list
 };
