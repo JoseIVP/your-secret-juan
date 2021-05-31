@@ -1,6 +1,3 @@
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_KEY);
-
 /**
  * Returns a response object with status 400.
  * @param {string} body - The body of the response.
@@ -73,7 +70,8 @@ exports.handler = async (event, context) => {
             text: `Tu amigo secreto es ${person.name}.`
         });
     }
-
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_KEY);
     let emailsOk = true;
     let msg = 'Emails sent';
     try{
