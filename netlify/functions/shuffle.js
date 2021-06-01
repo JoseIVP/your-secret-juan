@@ -66,23 +66,23 @@ exports.handler = async (event, context) => {
         emails.push({
             from: 'yoursecretjuan@gmail.com',
             to: santa.email,
-            subject: 'Tu amigo secreto es...',
-            text: `Tu amigo secreto es ${person.name}.`
+            subject: 'Your secret friend is...',
+            text: `Your secret friend is ${person.name}.`
         });
     }
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_KEY);
     let emailsOk = true;
-    let msg = 'Emails sent';
+    let msg = 'Emails sent.';
     try{
         await sgMail.sendMultiple(emails);
     }catch(error){
         console.log(error);
         emailsOk = false;
-        if(error.reponse)
-            msg = error.response.body;
+        if(error.reponse?.statusCode == 429)
+            msg = 'The server cannot send more emails for today, please try again later.';
         else
-            msg = 'An error has ocurred while sending the emails';
+            msg = 'An error has ocurred while sending the emails.';
     }
     return {
         statusCode: 200,
