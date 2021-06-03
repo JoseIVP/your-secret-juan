@@ -4,10 +4,12 @@
  * @returns {Object} - The response.
  */
 function badRequest(body){
-    return {
+    const response = {
         statusCode: 400,
         body
     };
+    console.log(response); 
+    return response;
 }
 
 /**
@@ -16,7 +18,7 @@ function badRequest(body){
  * @returns {boolean} - true if the email is valid, false otherwise.
  */
 function emailIsValid (email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 /**
@@ -80,9 +82,9 @@ exports.handler = async (event, context) => {
         console.log(error);
         emailsOk = false;
         if(error.reponse?.statusCode == 429)
-            msg = 'The server cannot send more emails for today, please try again later.';
+            msg = 'Could not send the emails: the server cannot send more emails for today, please try again later.';
         else
-            msg = 'An error has ocurred while sending the emails.';
+            msg = 'Could not send the emails: an error has ocurred while sending the emails.';
     }
     return {
         statusCode: 200,
