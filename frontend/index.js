@@ -125,7 +125,7 @@ cancelBtn.onclick = () => {
     /* Closes the confirmation element. */
 
     confirmationElement.classList.add("hidden");
-    // Also enable the form's control's
+    // Also enable the form's controls
     switchFormControls("enabled");
 };
 
