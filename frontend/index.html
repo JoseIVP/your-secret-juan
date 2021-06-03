@@ -21,7 +21,18 @@
             <button type="submit" disabled>Send emails</button>
         </form>
 
-        <template id='participant-template'>
+        <p id="confirmation" class="hidden">
+            Are you sure you want to send the emails?
+            <button class="confirm-btn">Yes</button>
+            <button class="cancel-btn">No</button>
+        </p>
+
+        <p id="message" class="hidden">
+            <span class="text"></span>
+            <button class="close-btn" title="Close message">&times</button>
+        </p>
+
+        <template id="participant-template">
             <fieldset class="participant">
                 <input class="participant-name" type="text" placeholder="Name"
                 required pattern=".*\S+.*" data-custom-validity="Participant name cannot be empty or blank.">

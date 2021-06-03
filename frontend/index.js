@@ -3,9 +3,17 @@ const addParticipantBtn = form.elements["add-participant-btn"];
 const participantTemplate = document.querySelector("#participant-template");
 const participantsList = form.elements["participants-list"];
 const submitBtn = form.querySelector("button[type=submit]");
+const confirmationElement = document.querySelector("#confirmation");
+const cancelBtn = document.querySelector("#confirmation .cancel-btn");
+const confirmBtn = document.querySelector("#confirmation .confirm-btn");
+const messageElement = document.querySelector("#message");
+const messageTextElement = document.querySelector("#message .text")
+const closeMessageBtn = document.querySelector("#message .close-btn");
 
 
 addParticipantBtn.onclick = () => {
+    /* Adds a participant to the list. */
+
     // Get the name and email to add new participant
     const nameInput = form.elements["participant-name"];
     const emailInput = form.elements["participant-email"];
@@ -36,10 +44,16 @@ addParticipantBtn.onclick = () => {
     }
 };
 
+function switchFormControls(to){
+    const disabled = to === "disabled";
+    form.querySelectorAll("fieldset").forEach(f => f.disabled = disabled);
+    submitBtn.disabled = disabled;
+}
 
 form.onsubmit = (event) => {
+    /* Validates the data and open the confirmation element. */
+
     event.preventDefault();
-    // console.log("form.onsubmit()");
     // Only validate the inputs from the list of participants
     for(const input of participantsList.querySelectorAll("input")){
         if(!input.validity.valid){
@@ -47,6 +61,22 @@ form.onsubmit = (event) => {
             return;
         }
     }
+    // Open the confirmation element
+    confirmationElement.classList.remove("hidden");
+
+    // Disable the form's controls
+    switchFormControls("disabled");
+};
+
+
+confirmBtn.onclick = () => {
+    /* Submits the data for sending the emails. */
+
+    // Close the confirmation element
+    confirmationElement.classList.add("hidden");
+    // Show the status message
+    messageElement.className = "processing";
+    messageTextElement.textContent = "Sending emails.";
 
     // Get the data from the inputs
     const participants = [];
@@ -59,7 +89,7 @@ form.onsubmit = (event) => {
         }
         participants.push(participant);
     }
-    // TODO: Open a dialog for confirmation
+
     // Send the data
     const options = {
         method: 'POST',
@@ -74,13 +104,34 @@ form.onsubmit = (event) => {
         return Promise.reject(response.text());
     })
     .then(result => {
-        if(result.emailsOk){
-            // TODO: Show a success message
-            console.log(result.msg);
-            return;
-        }
-        return Promise.reject(result.msg)
+        // Either the emails were sent or there was an error related to Sendgrid
+        messageTextElement.textContent = result.msg;
+        messageElement.className = result.emailsOk? "success": "failure";
     })
-    .catch(errorMsg => console.log(errorMsg));
-    // TODO: remove the participants list
+    .catch(errorMsg => {
+        // There was an error between this application and the server
+        messageElement.className = "failure";
+        messageTextElement.textContent = "An error has ocurred between the application and the server.";
+        console.log(errorMsg);
+    })
+    .finally(() => {
+        // Enable the form's controls
+        switchFormControls("enabled");
+    });
+};
+
+
+cancelBtn.onclick = () => {
+    /* Closes the confirmation element. */
+
+    confirmationElement.classList.add("hidden");
+    // Also enable the form's control's
+    switchFormControls("enabled");
+};
+
+
+closeMessageBtn.onclick = () => {
+    /* Closes the message element. */
+
+    messageElement.classList.add("hidden");
 };

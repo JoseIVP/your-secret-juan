@@ -1,0 +1,15 @@
+input:invalid{
+    outline: 2px solid red;
+}
+
+input:valid{
+    outline: 2px solid green;
+}
+
+.hidden{
+    display: none;
+}
+
+#message.processing .close-btn{
+    display: none;
+}
