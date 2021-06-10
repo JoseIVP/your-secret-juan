@@ -1,9 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /* All color definitions: */
+    --page-background: #E53935;
+    --title: white;
+    --form-background: #EF9A9A;
+    --participant-background: #E57373;
+    --new-participant-background: #66BB6A;
+    --input-background: white;
+    --input-placeholder: #9E9E9E;
+    --input-text: #E53935;
+    --new-participant-input-text: #43A047;
+    --input-outline: #B71C1C;
+    --button-background: #E53935;
+    --button-text: white;
+    --submit-button-background: #43A047;
+    --add-participant-button-background: #43A047;
+
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--page-background);
+}
+
+h1{
+    color: var(--title);
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+    font-size: 3rem;
+}
+
+#participants-form{
+    background-color: var(--form-background);
+    max-width: 800px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+fieldset{
+    font-size: inherit;
+}
+
+input{
+    background-color: var(--input-background);
+    color: var(--input-text);
+    padding: .5em;
+    border-radius: 2px;
+    font-size: inherit;
+    outline: none;
+}
+
+input:focus, input:hover{
+
+}
+
+input::placeholder{
+    color: var(--input-placeholder);
+}
+
 input:invalid{
-    outline: 2px solid red;
+    /* outline: 2px solid red; */
 }
 
 input:valid{
-    outline: 2px solid green;
+    /* outline: 2px solid green; */
+}
+
+button{
+    background-color: var(--button-background);
+    color: var(--button-text);
+    padding: .5em;
+    border-radius: 2px;
+    font-size: inherit;
+}
+
+#participants-form button[type=submit]{
+    width: 100%;
+    font-size: 1.5rem;
+    background-color: var(--submit-button-background);
+}
+
+fieldset[name="participants-list"]{
+    margin-bottom: 1em;
+}
+
+.participant,
+#participants-form > fieldset:last-of-type{
+    display: flex;
+    background-color: var(--participant-background);
+    padding: .6em;
+    border-radius: 2px;
+}
+
+.participant:not(:last-child){
+    margin-bottom: 1em;
+}
+
+#participants-form > fieldset:last-of-type{
+    margin-bottom: 1em;
+    background-color: var(--new-participant-background);
+    --input-text: var(--new-participant-input-text);
+    --button-background: var(--add-participant-button-background);
+}
+
+#participants-form input{
+    flex-grow: 1;
+    margin-right: .3em;
+}
+
+.participant .remove-participant-btn{
+    flex: 0 0 2em;
+    font-weight: bold;
 }
 
 .hidden{
