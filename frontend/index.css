@@ -30,8 +30,16 @@ h1{
     color: var(--title);
     max-width: 800px;
     margin: 2rem auto;
-    text-align: center;
     font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 img{
+    height: 100px;
+    margin-left: 1rem;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1)) drop-shadow(-5px -5px 5px rgba(0, 0, 0, 0.1));
 }
 
 #participants-form{
