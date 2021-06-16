@@ -22,6 +22,14 @@
     --submit-button-background: #43A047;
     --add-participant-button-background: #43A047;
 
+    /* Colors of the SVG tree: */
+    --tree: #388E3C;
+    --tree-border: #2E7D32;
+    --tree-ball-details: #FBC02D;
+    --tree-balls: #D32F2F;
+    --tree-star: #FBC02D;
+    --tree-lines: #FBC02D;
+
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--page-background);
 }
@@ -39,7 +47,8 @@ h1{
 h1 img{
     height: 100px;
     margin-left: 1rem;
-    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1)) drop-shadow(-5px -5px 5px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1))
+        drop-shadow(-5px -5px 5px rgba(0, 0, 0, 0.1));
 }
 
 #participants-form{
@@ -135,4 +144,43 @@ fieldset[name="participants-list"]{
 
 #message.processing .close-btn{
     display: none;
+}
+
+#tree-svg{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: -1;
+    min-height: 700px;
+    height: 40vh;
+    filter: drop-shadow(5px 0 5px rgba(0, 0, 0, 0.3));
+}
+
+.tree {
+    fill: var(--tree);
+    stroke-linejoin: round;
+    stroke-width: 5px;
+    stroke: var(--tree-border);
+}
+
+.ball-cord {
+    fill: var(--tree-ball-details);
+}
+.ball-line {
+    fill: var(--tree-ball-details);
+}
+
+.ball { 
+    fill: var(--tree-balls);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.star {
+    fill: var(--tree-star);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.tree-line {  
+    fill: var(--tree-lines);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
 }
