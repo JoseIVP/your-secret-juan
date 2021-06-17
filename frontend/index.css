@@ -9,6 +9,7 @@
     /* All color definitions: */
     --page-background: #E53935;
     --title: white;
+    --text-color: white;
     --form-background: #EF9A9A;
     --participant-background: #E57373;
     --new-participant-background: #66BB6A;
@@ -193,9 +194,96 @@ button[name="add-participant-btn"]{
     display: none;
 }
 
+#confirmation,
+#message{
+    position: fixed;
+    width: min(600px, 95%);
+    left: calc(50vw - min(600px, 95%) / 2);
+    top: 10vh;
+    padding: min(20px, 4%);
+    color: var(--text-color);
+    background-color: transparent;
+}
+
+
+:is(#confirmation, #message)::before{
+    position: absolute;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    top: -10vh;
+    left: calc(-50vw + 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+:is(#confirmation, #message)::after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    z-index: -1;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--form-background);
+}
+
+#message.success::after{
+    background-color: var(--new-participant-background);
+}
+
+:is(#confirmation, #message) span{
+    display: block;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+}
+
+:is(#confirmation, #message) button{
+    float: right;
+    margin-top: .6em;
+    padding: .3em 1em;
+    margin-left: .6em;
+    font-size: 1.5rem;
+}
+
+.confirm-btn, #message.success button{
+    --button-background: var(--submit-button-background);
+    --button-background-hover: var(--submit-button-background-hover);
+    --button-border-focus: var(--submit-button-border-focus);
+}
+
 #message.processing .close-btn{
     display: none;
 }
+
+#message.processing .text::after{
+    content: "";
+    display: block;
+    margin: .3em auto 0px auto;
+    width: 1em;
+    height: 1em;
+    border-radius: 1000px;
+    border: 10px solid var(--button-background);
+    border-bottom-color: transparent;
+    background-color: transparent;
+    z-index: 100;
+    position: relative;
+    animation: spin 1s linear infinite;
+}
+
+ @keyframes spin {
+     from{
+         transform: rotate(0deg);
+     }
+
+     to{
+         transform: rotate(360deg);
+     }
+ }
 
 #tree-svg{
     position: fixed;
