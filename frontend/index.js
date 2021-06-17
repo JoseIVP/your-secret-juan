@@ -92,7 +92,7 @@ confirmBtn.onclick = () => {
 
     // Send the data
     const options = {
-        method: 'POST',
+        method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(participants),
     };
@@ -113,25 +113,21 @@ confirmBtn.onclick = () => {
         messageElement.className = "failure";
         messageTextElement.textContent = "An error has ocurred between the application and the server.";
         console.log(errorMsg);
-    })
-    .finally(() => {
-        // Enable the form's controls
-        switchFormControls("enabled");
     });
 };
 
 
 cancelBtn.onclick = () => {
-    /* Closes the confirmation element. */
+    /* Closes the confirmation element and enables the form controls. */
 
     confirmationElement.classList.add("hidden");
-    // Also enable the form's controls
     switchFormControls("enabled");
 };
 
 
 closeMessageBtn.onclick = () => {
-    /* Closes the message element. */
+    /* Closes the message element and enables the form controls. */
 
     messageElement.classList.add("hidden");
+    switchFormControls("enabled");
 };

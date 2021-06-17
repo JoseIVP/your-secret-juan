@@ -57,6 +57,7 @@ exports.handler = async (event, context) => {
         [shuffle[i], shuffle[j]] = [shuffle[j], shuffle[i]];
     }
     const emails = [];
+    // TODO: Fix matching for the example people=[a,b,c] shuffle=[b, a, c]
     // For each santa pop a person from the shuffled array and prepare an email
     for(const santa of people){
         const last = shuffle.length - 1;
@@ -68,7 +69,7 @@ exports.handler = async (event, context) => {
         emails.push({
             from: 'yoursecretjuan@gmail.com',
             to: santa.email,
-            subject: 'Your secret friend is...',
+            subject: `Hi ${santa.name}, your secret friend is...`,
             text: `Your secret friend is ${person.name}.`
         });
     }
