@@ -16,11 +16,20 @@
     --input-placeholder: #9E9E9E;
     --input-text: #E53935;
     --new-participant-input-text: #43A047;
-    --input-outline: #B71C1C;
+    --input-border-focus: #F9A825;
+    --new-participant-input-border-focus: #F9A825;
+    --input-background-hover: #FFF176;
+    --new-participant-input-background-hover: #FFF176;
     --button-background: #E53935;
+    --button-background-hover: #D32F2F;
+    --button-border-focus: #FBC02D;
     --button-text: white;
     --submit-button-background: #43A047;
+    --submit-button-background-hover: #388E3C;
+    --submit-button-border-focus: #FBC02D;
     --add-participant-button-background: #43A047;
+    --add-participant-button-background-hover: #388E3C;
+    --add-participant-button-border-focus: #FBC02D;
 
     /* Colors of the SVG tree: */
     --tree: #388E3C;
@@ -73,10 +82,16 @@ input{
     border-radius: 2px;
     font-size: inherit;
     outline: none;
+    transition: background-color .2s,
+        box-shadow .2s;
 }
 
-input:focus, input:hover{
+input:is(:hover, :focus){
+    background-color: var(--input-background-hover);
+}
 
+input:focus{
+    box-shadow: 0px 0px 0px .2em var(--input-border-focus);
 }
 
 input::placeholder{
@@ -97,12 +112,32 @@ button{
     padding: .5em;
     border-radius: 2px;
     font-size: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: background-color .2s,
+        box-shadow .2s;
 }
 
-#participants-form button[type=submit]{
+button[type=submit]{
     width: 100%;
     font-size: 1.5rem;
-    background-color: var(--submit-button-background);
+    font-weight: bold;
+    --button-background: var(--submit-button-background);
+    --button-background-hover: var(--submit-button-background-hover);
+    --button-border-focus: var(--submit-button-border-focus);
+}
+
+button:is(:hover, :focus):not(:disabled){
+    background-color: var(--button-background-hover);
+}
+
+button:focus{
+    background-color: var(--button-background-hover);
+    box-shadow: 0px 0px 0px .2em var(--button-border-focus);
+}
+
+:is(button, input):disabled{
+    filter: opacity(38%);
 }
 
 fieldset[name="participants-list"]{
@@ -125,7 +160,16 @@ fieldset[name="participants-list"]{
     margin-bottom: 1em;
     background-color: var(--new-participant-background);
     --input-text: var(--new-participant-input-text);
+    --input-border-focus: var(--new-participant-input-border-focus);
+    --input-background-hover: var(--new-participant-input-background-hover);
+}
+
+button[name="add-participant-btn"]{
+    font-weight: bold;
+    padding: .5em 1em;
     --button-background: var(--add-participant-button-background);
+    --button-background-hover: var(--add-participant-button-background-hover);
+    --button-border-focus: var(--add-participant-button-border-focus);
 }
 
 #participants-form input{
