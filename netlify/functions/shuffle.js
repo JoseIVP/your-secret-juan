@@ -51,21 +51,26 @@ exports.handler = async (event, context) => {
     }
     
     // Shuffle the array of people
-    const shuffle = [...people]
-    for(let i=0; i<shuffle.length; i++){
-        const j = i + Math.floor(Math.random() * (shuffle.length - i));
-        [shuffle[i], shuffle[j]] = [shuffle[j], shuffle[i]];
+    const shuffled = [...people]
+    for(let i=0; i<shuffled.length; i++){
+        const j = i + Math.floor(Math.random() * (shuffled.length - i));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const lastIndex = people.length - 1
+    if(shuffled[0] == people[lastIndex]){
+        // This will prevent getting the same person at the end as we iterate
+        // over people and pop from shuffled in the lines below
+        [shuffled[0], shuffled[lastIndex]] = [shuffled[lastIndex], shuffled[0]];
     }
     const emails = [];
-    // TODO: Fix matching for the example people=[a,b,c] shuffle=[b, a, c]
     // For each santa pop a person from the shuffled array and prepare an email
     for(const santa of people){
-        const last = shuffle.length - 1;
-        if(shuffle[last] == santa){
-            // If santa is the last then send it to the front of the array
-            [shuffle[0], shuffle[last]] = [shuffle[last], shuffle[0]];
+        const last = shuffled.length - 1;
+        // Make sure santa is not the one we are going to pop
+        if(shuffled[last] == santa){
+            [shuffled[0], shuffled[last]] = [shuffled[last], shuffled[0]];
         }
-        const person = shuffle.pop();
+        const person = shuffled.pop();
         emails.push({
             from: 'yoursecretjuan@gmail.com',
             to: santa.email,
