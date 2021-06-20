@@ -182,7 +182,7 @@ button:focus{
 }
 
 .participant,
-#participants-form > fieldset:last-of-type{
+#participants-form > fieldset:first-of-type{
     display: flex;
     flex-wrap: wrap;
     gap: .3em;
@@ -192,7 +192,7 @@ button:focus{
 }
 
 :is(.participant,
-#participants-form > fieldset:last-of-type) input{
+#participants-form > fieldset:first-of-type) input{
     width: min(217px, 100%);
     flex: 1 1 auto;
 }
@@ -201,7 +201,7 @@ button:focus{
     margin-bottom: 1em;
 }
 
-#participants-form > fieldset:last-of-type{
+#participants-form > fieldset:first-of-type{
     margin-bottom: 1em;
     background-color: var(--new-participant-background);
     --input-text: var(--new-participant-input-text);
