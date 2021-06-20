@@ -1,0 +1,367 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /* All color definitions: */
+    --page-background: #E53935;
+    --title: white;
+    --text-color: white;
+    --form-background: #EF9A9A;
+    --participant-background: #E57373;
+    --new-participant-background: #66BB6A;
+    --input-background: white;
+    --input-placeholder: #9E9E9E;
+    --input-text: #E53935;
+    --new-participant-input-text: #43A047;
+    --input-border-focus: #F9A825;
+    --new-participant-input-border-focus: #F9A825;
+    --input-background-hover: #FFF176;
+    --new-participant-input-background-hover: #FFF176;
+    --button-background: #E53935;
+    --button-background-hover: #D32F2F;
+    --button-border-focus: #FBC02D;
+    --button-text: white;
+    --submit-button-background: #43A047;
+    --submit-button-background-hover: #388E3C;
+    --submit-button-border-focus: #FBC02D;
+    --add-participant-button-background: #43A047;
+    --add-participant-button-background-hover: #388E3C;
+    --add-participant-button-border-focus: #FBC02D;
+
+    /* Colors of the SVG tree: */
+    --tree: #388E3C;
+    --tree-border: #2E7D32;
+    --tree-ball-details: #FBC02D;
+    --tree-balls: #D32F2F;
+    --tree-star: #FBC02D;
+    --tree-lines: #FBC02D;
+
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--page-background);
+}
+
+header{
+    max-width: min(800px, 95%);
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+h1{
+    color: var(--title);
+    font-size: clamp(1.8rem, 10vw, 3rem);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+header img{
+    height: min(100px, 20vw);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1))
+        drop-shadow(-5px -5px 5px rgba(0, 0, 0, 0.1));
+}
+
+#introduction{
+    background-color: var(--form-background);
+    max-width: min(800px, 95%);
+    padding: min(20px, 4%);
+    margin: 0 auto;
+    margin-bottom: 1.2em;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#introduction h2{
+    font-size: 2rem;
+    margin-bottom: .8rem;
+}
+
+#introduction p{
+    background-color: var(--participant-background);
+    text-align: justify;
+    padding: .6em;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+}
+
+strong{
+    font-weight: bold;
+}
+
+@media (max-width: 350px){
+    #introduction p{
+        text-align: center;
+    }
+}
+
+#participants-form{
+    background-color: var(--form-background);
+    max-width: min(800px, 95%);
+    padding: min(20px, 4%);
+    margin: 0 auto;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+#participants-form h2{
+    color: var(--title);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    margin-bottom: .8rem;
+}
+
+fieldset{
+    font-size: inherit;
+}
+
+input{
+    background-color: var(--input-background);
+    color: var(--input-text);
+    padding: .5em;
+    border-radius: 2px;
+    font-size: inherit;
+    outline: none;
+    transition: background-color .2s,
+        box-shadow .2s;
+}
+
+input:is(:hover, :focus):not(:disabled){
+    background-color: var(--input-background-hover);
+}
+
+input:focus{
+    box-shadow: 0px 0px 0px .2em var(--input-border-focus);
+}
+
+input::placeholder{
+    color: var(--input-placeholder);
+}
+
+button{
+    background-color: var(--button-background);
+    color: var(--button-text);
+    padding: .5em;
+    border-radius: 2px;
+    font-size: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: background-color .2s,
+        box-shadow .2s;
+}
+
+button[type=submit]{
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    --button-background: var(--submit-button-background);
+    --button-background-hover: var(--submit-button-background-hover);
+    --button-border-focus: var(--submit-button-border-focus);
+}
+
+button:is(:hover, :focus):not(:disabled){
+    background-color: var(--button-background-hover);
+}
+
+button:focus{
+    background-color: var(--button-background-hover);
+    box-shadow: 0px 0px 0px .2em var(--button-border-focus);
+}
+
+:is(button, input):disabled{
+    filter: opacity(38%);
+}
+
+.participant,
+#participants-form > fieldset:first-of-type{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3em;
+    background-color: var(--participant-background);
+    padding: .6em;
+    border-radius: 2px;
+}
+
+:is(.participant,
+#participants-form > fieldset:first-of-type) input{
+    width: min(217px, 100%);
+    flex: 1 1 auto;
+}
+
+.participant{
+    margin-bottom: 1em;
+}
+
+#participants-form > fieldset:first-of-type{
+    margin-bottom: 1em;
+    background-color: var(--new-participant-background);
+    --input-text: var(--new-participant-input-text);
+    --input-border-focus: var(--new-participant-input-border-focus);
+    --input-background-hover: var(--new-participant-input-background-hover);
+}
+
+button[name="add-participant-btn"]{
+    font-weight: bold;
+    padding: .5em 1em;
+    --button-background: var(--add-participant-button-background);
+    --button-background-hover: var(--add-participant-button-background-hover);
+    --button-border-focus: var(--add-participant-button-border-focus);
+}
+
+#participants-form input{
+    flex-grow: 1;
+}
+
+.participant .remove-participant-btn{
+    flex: 0 0 2em;
+    font-weight: bold;
+}
+
+.hidden{
+    display: none;
+}
+
+#confirmation,
+#message{
+    position: fixed;
+    width: min(600px, 95%);
+    left: calc(50vw - min(600px, 95%) / 2);
+    top: 10vh;
+    padding: min(20px, 4%);
+    color: var(--text-color);
+    background-color: transparent;
+}
+
+
+:is(#confirmation, #message)::before{
+    position: absolute;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    top: -10vh;
+    left: calc(-50vw + 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+:is(#confirmation, #message)::after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    z-index: -1;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    /* TODO: improve the use of variables */
+    background-color: var(--participant-background);
+}
+
+#message.success::after{
+    background-color: var(--new-participant-background);
+}
+
+:is(#confirmation, #message) span{
+    display: block;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+}
+
+:is(#confirmation, #message) button{
+    float: right;
+    margin-top: .6em;
+    padding: .3em 1em;
+    margin-left: .6em;
+    font-size: 1.5rem;
+}
+
+.confirm-btn, #message.success button{
+    --button-background: var(--submit-button-background);
+    --button-background-hover: var(--submit-button-background-hover);
+    --button-border-focus: var(--submit-button-border-focus);
+}
+
+#message.processing .close-btn{
+    display: none;
+}
+
+#message.processing .text::after{
+    content: "";
+    display: block;
+    margin: .3em auto 0px auto;
+    width: 1em;
+    height: 1em;
+    border-radius: 1000px;
+    border: 10px solid var(--button-background);
+    border-bottom-color: transparent;
+    background-color: transparent;
+    z-index: 100;
+    position: relative;
+    animation: spin 1s linear infinite;
+}
+
+ @keyframes spin {
+     from{
+         transform: rotate(0deg);
+     }
+
+     to{
+         transform: rotate(360deg);
+     }
+ }
+
+#tree-svg{
+    position: fixed;
+    bottom: 0px;
+    right: max(0px, (100vw - 1920px) / 2);
+    z-index: -1;
+    height: 60vh;
+    filter: drop-shadow(5px 0 5px rgba(0, 0, 0, 0.3));
+}
+
+@media(max-width: 1200px){
+    #tree-svg{
+        display: none;
+    }
+}
+
+.tree {
+    fill: var(--tree);
+    stroke-linejoin: round;
+    stroke-width: 5px;
+    stroke: var(--tree-border);
+}
+
+.ball-cord {
+    fill: var(--tree-ball-details);
+}
+.ball-line {
+    fill: var(--tree-ball-details);
+}
+
+.ball { 
+    fill: var(--tree-balls);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.star {
+    fill: var(--tree-star);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.tree-line {  
+    fill: var(--tree-lines);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}
