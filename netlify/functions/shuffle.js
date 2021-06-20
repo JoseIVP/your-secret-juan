@@ -87,7 +87,7 @@ exports.handler = async (event, context) => {
     }catch(error){
         console.log(error);
         emailsOk = false;
-        if(error.reponse?.statusCode == 429)
+        if(error.reponse && error.response.statusCode == 429)
             msg = 'Could not send the emails: the server cannot send more emails for today, please try again later.';
         else
             msg = 'Could not send the emails: an error has ocurred while sending the emails.';
