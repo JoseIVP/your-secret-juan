@@ -325,11 +325,16 @@ button[name="add-participant-btn"]{
 #tree-svg{
     position: fixed;
     bottom: 0px;
-    right: 0px;
+    right: max(0px, (100vw - 1920px) / 2);
     z-index: -1;
-    min-height: 700px;
-    height: 40vh;
+    height: 60vh;
     filter: drop-shadow(5px 0 5px rgba(0, 0, 0, 0.3));
+}
+
+@media(max-width: 1200px){
+    #tree-svg{
+        display: none;
+    }
 }
 
 .tree {
