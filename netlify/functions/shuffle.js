@@ -41,8 +41,8 @@ exports.handler = async (event, context) => {
     }
     if(!Array.isArray(people))
         return badRequest('Error: the provided data is not a JSON array');
-    if(people.length < 3)
-        return badRequest('Error: the provided array cannot have a length less than 3')
+    if(people.length < 4)
+        return badRequest('Error: the provided array cannot have a length less than 4')
     for(const {name, email} of people){
         if(typeof name != 'string')
             return badRequest('Error: one of the objects does not have a name property string');
