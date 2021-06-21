@@ -34,12 +34,12 @@ addParticipantBtn.onclick = () => {
     participantFragment.querySelector(".participant-email").value = participantEmail;
     participantFragment.querySelector(".remove-participant-btn").onclick = function () {
         participantsList.removeChild(this.parentNode);
-        if(participantsList.children.length <= 2){
+        if(participantsList.children.length < 4){
             submitBtn.disabled = true;
         }
     };
     participantsList.appendChild(participantFragment);
-    if(participantsList.children.length > 2){
+    if(participantsList.children.length > 3){
         submitBtn.disabled = false;
     }
 };
